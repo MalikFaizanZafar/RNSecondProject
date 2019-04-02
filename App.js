@@ -37,7 +37,7 @@ class HomeScreen extends React.Component {
               onPress={() => this.props.navigation.navigate("Landing")}
             />
           </View>
-          <View>
+          <View style={{marginTop : 15}}>
             <Button
               color="red"
               style={{ marginTop: 20 }}
