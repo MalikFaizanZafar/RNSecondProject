@@ -5,7 +5,9 @@ import {
   createAppContainer,
   createBottomTabNavigator
 } from "react-navigation";
-import LandingScreen from "./landing";
+import LandingScreen from "./Screens/Landing/landing";
+import AboutScreen from "./Screens/Landing/about";
+import SettingsScreen from "./Screens/Landing/settings";
 
 const styles = StyleSheet.create({
   container: {
@@ -56,26 +58,6 @@ class HomeScreen extends React.Component {
   }
 }
 
-class AboutScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>About!</Text>
-      </View>
-    );
-  }
-}
-
-class SettingsScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Settings!</Text>
-      </View>
-    );
-  }
-}
-
 
 const LandingTabNavigator = createBottomTabNavigator({
   Landing: LandingScreen,
@@ -94,9 +76,13 @@ const LandingTabNavigator = createBottomTabNavigator({
       return <Ionicons name={iconName} size={25} color={tintColor} />;
     },
   }),
+  swipeEnabled: true,
   tabBarOptions: {
-    activeTintColor: '#d2959f',
+    activeTintColor: '#fff',
     inactiveTintColor: 'gray',
+    style: {
+      backgroundColor: 'blue'
+    }
   },
 });
 
