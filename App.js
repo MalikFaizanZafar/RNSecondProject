@@ -58,40 +58,11 @@ class HomeScreen extends React.Component {
   }
 }
 
-const LandingTabNavigator = createBottomTabNavigator(
-  {
-    Landing: LandingScreen,
-    About: AboutScreen,
-    Settings: SettingsScreen
-  },
-  {
-    navigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, tintColor }) => {
-        const { routeName } = navigation.state;
-        let iconName;
-        if (routeName === "home") {
-          iconName = `ios-information-circle${focused ? "" : "-outline"}`;
-        } else if (routeName === "recipe") {
-          iconName = `ios-options${focused ? "" : "-outline"}`;
-        }
-        return <Ionicons name={iconName} size={25} color={tintColor} />;
-      }
-    }),
-    swipeEnabled: true,
-    tabBarOptions: {
-      activeTintColor: "#fff",
-      inactiveTintColor: "gray",
-      style: {
-        backgroundColor: "blue"
-      }
-    }
-  }
-);
 
 const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
-    Landing: LandingTabNavigator
+    Landing: LandingScreen
   },
   {
     initialRouteName: "Home",
