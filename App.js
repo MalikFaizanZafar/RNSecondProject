@@ -5,7 +5,7 @@ import {
   createAppContainer,
   createBottomTabNavigator
 } from "react-navigation";
-import LandingScreen from "./Screens/Landing/landing";
+import LandingScreen, { MyDrawerNavigator } from "./Screens/Landing/landing";
 import AboutScreen from "./Screens/Landing/about";
 import SettingsScreen from "./Screens/Landing/settings";
 
@@ -62,7 +62,7 @@ class HomeScreen extends React.Component {
 const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
-    Landing: LandingScreen
+    Landing: MyDrawerNavigator
   },
   {
     initialRouteName: "Home",

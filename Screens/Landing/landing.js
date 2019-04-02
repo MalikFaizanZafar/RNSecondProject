@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Button, Image, Dimensions } from "react-native";
 import { Icon, Badge } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
+import { createDrawerNavigator} from 'react-navigation'
 const items = [
   {
     name: "Item 1",
@@ -37,7 +38,7 @@ export default class LandingScreen extends React.Component {
       <View style={styles.container}>
         <View style={styles.topBar}>
           <View style={styles.topBarIcon}>
-            <Icon name="menu" color="white" size={iconSize} />
+            <Icon name="menu" color="white" size={iconSize}   onPress={() => this.props.navigation.openDrawer()}/>
           </View>
           <View style={styles.topBarLogo}>
             <Text style={{ fontSize: 20, color: "white" }}>SubQuch Logo</Text>
@@ -152,6 +153,43 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 10,
     fontWeight: "bold"
+  },
+  icon: {
+    width: 24,
+    height: 24,
   }
 });
 
+class SideBarScreen extends React.Component {
+  static navigationOptions = {
+    drawerLabel: 'Sidebar',
+    drawerIcon: ({ tintColor }) => (
+      <Image
+        source={{uri : "https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg"}}
+        style={[styles.icon, {tintColor: tintColor}]}
+      />
+    ),
+  };
+
+  render() {
+    return (
+      <Button
+        onPress={() => this.props.navigation.goBack()}
+        title="Go back home"
+      />
+    );
+  }
+}
+
+export const MyDrawerNavigator = createDrawerNavigator({
+  Landing: {
+    screen: LandingScreen,
+  },
+  Sidebar: {
+    screen: SideBarScreen,
+  },
+}, {
+  backgroundColor: 'green',
+  drawerWidth: 200,
+  initialRouteName: "Landing"
+});
