@@ -76,29 +76,37 @@ class SettingsScreen extends React.Component {
   }
 }
 
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: HomeScreen
-  },
-  Landing: createBottomTabNavigator(
-    {
-      Landing: LandingScreen,
-      About: AboutScreen,
-      Settings: SettingsScreen
-    },
-    {
-      tabBarOptions: {
-        activeTintColor: "white",
-        labelStyle: {
-          fontSize: 12
-        },
-        style: {
-          backgroundColor: "green"
-        }
+
+const LandingTabNavigator = createBottomTabNavigator({
+  Landing: LandingScreen,
+  About: AboutScreen,
+  Settings: SettingsScreen
+},{
+  navigationOptions: ({ navigation }) => ({
+    tabBarIcon: ({ focused, tintColor }) => {
+      const { routeName } = navigation.state;
+      let iconName;
+      if (routeName === 'home') {
+        iconName = `ios-information-circle${focused ? '' : '-outline'}`;
+      } else if (routeName === 'recipe') {
+        iconName = `ios-options${focused ? '' : '-outline'}`;
       }
-    }
-  ),
-  initialRouteName: "Home"
+      return <Ionicons name={iconName} size={25} color={tintColor} />;
+    },
+  }),
+  tabBarOptions: {
+    activeTintColor: '#d2959f',
+    inactiveTintColor: 'gray',
+  },
+});
+
+const AppNavigator = createStackNavigator({
+  Home: HomeScreen,
+  Landing : LandingTabNavigator
+}, {
+  initialRouteName: 'Home',
+  header: null,
+  headerMode: 'none'
 });
 
 export default createAppContainer(AppNavigator);
