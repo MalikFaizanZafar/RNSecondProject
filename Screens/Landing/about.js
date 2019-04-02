@@ -7,7 +7,7 @@ import {
   Dimensions,
   StyleSheet
 } from "react-native";
-import { Card, ListItem, Button, Icon } from "react-native-elements";
+import { Card, ListItem, Button, Icon, ButtonGroup, Badge } from "react-native-elements";
 const items = [
   {
     name: "Item 1",
@@ -33,12 +33,38 @@ const items = [
 export default class AboutScreen extends React.Component {
   render() {
     let dimensions = Dimensions.get("window");
-    let imageHeight = dimensions.width * 0.75;
+    let imageHeight = dimensions.height * 0.6;
     let imageWidth = dimensions.width;
 
     return (
       <View style={styles.container}>
-        <ScrollView horizontal={true}>
+      <ScrollView horizontal={true} style={{marginTop: 25, height: 50}}>
+        <View style={{flex: 1, justifyContent: "center", width: 100}}>
+        <Badge value="Pizza" status="primary" />
+        </View>
+        <View style={{flex: 1, justifyContent: "center", width: 100}}>
+        <Badge value="Burger" status="primary" />
+        </View>
+        <View style={{flex: 1, justifyContent: "center", width: 100}}>
+        <Badge value="Chicken" status="primary" />
+        </View>
+        <View style={{flex: 1, justifyContent: "center", width: 100}}>
+        <Badge value="Chinese" status="primary" />
+        </View >
+        <View style={{flex: 1, justifyContent: "center", width: 100}}>
+        <Badge value="Italian" status="primary" />
+        </View>
+        <View style={{flex: 1, justifyContent: "center", width: 100}}>
+        <Badge value="French" status="primary" />
+        </View>
+        <View style={{flex: 1, justifyContent: "center", width: 100}}>
+        <Badge value="Vegetable" status="primary" />
+        </View>
+        <View style={{flex: 1, justifyContent: "center", width: 100}}>
+        <Badge value="Drinks" status="primary" />
+        </View>
+      </ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           {items.map((item, i) => {
             return (
               <View key={i} style={{justifyContent: "center"}}>
@@ -61,7 +87,7 @@ export default class AboutScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    // justifyContent: "center",
     backgroundColor: "#e5e5e5"
   },
   headerText: {
