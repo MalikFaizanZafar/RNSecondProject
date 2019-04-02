@@ -1,5 +1,12 @@
 import React from "react";
-import { View, Text, Image, ScrollView, Dimensions } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  Dimensions,
+  StyleSheet
+} from "react-native";
 import { Card, ListItem, Button, Icon } from "react-native-elements";
 const items = [
   {
@@ -25,24 +32,42 @@ const items = [
 ];
 export default class AboutScreen extends React.Component {
   render() {
-    let screenWidth = Dimensions.get('window').width
-    let screenHeight = Dimensions.get('window').height
+    let dimensions = Dimensions.get("window");
+    let imageHeight = dimensions.width * 0.75;
+    let imageWidth = dimensions.width;
+
     return (
-      <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
-        <Card title="Items">
+      <View style={styles.container}>
+        <ScrollView horizontal={true}>
           {items.map((item, i) => {
             return (
-              <View key={i} style={{flex : 1, alignItems: "center"}}>
+              <View key={i} style={{justifyContent: "center"}}>
                 <Image
-                  style={{ width: screenWidth, height: screenHeight * 0.5 }}
-                  source={{ uri: item.pic }}
-                />
-                <Text style={{textAlign : "center", fontWeight: "bold"}}>{item.name}</Text>
+                style={{ width: imageWidth, height: imageHeight }}
+                source={{
+                  uri: item.pic
+                }}
+              />
+              <Text style={{textAlign: "center", fontSize: 20, fontWeight: "bold"}}>{item.name}</Text>
               </View>
             );
           })}
-        </Card>
-      </ScrollView>
+        </ScrollView>
+      </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: "#e5e5e5"
+  },
+  headerText: {
+    fontSize: 20,
+    textAlign: "center",
+    margin: 10,
+    fontWeight: "bold"
+  }
+});
