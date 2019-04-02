@@ -1,6 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import {
+  createStackNavigator,
+  createAppContainer,
+  createBottomTabNavigator
+} from "react-navigation";
 import LandingScreen from "./landing";
 
 const styles = StyleSheet.create({
@@ -37,7 +41,7 @@ class HomeScreen extends React.Component {
               onPress={() => this.props.navigation.navigate("Landing")}
             />
           </View>
-          <View style={{marginTop : 15}}>
+          <View style={{ marginTop: 15 }}>
             <Button
               color="red"
               style={{ marginTop: 20 }}
@@ -52,13 +56,48 @@ class HomeScreen extends React.Component {
   }
 }
 
+class AboutScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>About!</Text>
+      </View>
+    );
+  }
+}
+
+class SettingsScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Settings!</Text>
+      </View>
+    );
+  }
+}
+
 const AppNavigator = createStackNavigator({
   Home: {
     screen: HomeScreen
   },
-  Landing: {
-    screen: LandingScreen
-  },
+  Landing: createBottomTabNavigator(
+    {
+      Landing: LandingScreen,
+      About: AboutScreen,
+      Settings: SettingsScreen
+    },
+    {
+      tabBarOptions: {
+        activeTintColor: "white",
+        labelStyle: {
+          fontSize: 12
+        },
+        style: {
+          backgroundColor: "green"
+        }
+      }
+    }
+  ),
   initialRouteName: "Home"
 });
 
